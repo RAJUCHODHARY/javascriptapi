@@ -422,21 +422,19 @@ box8.addEventListener('scroll', infinitscrol8);
 
 
 let img = document.querySelector('#img');
-let span = document.querySelector('#spans');
-let email = document.querySelector('#email');
-let gender = document.querySelector('#gender');
+let imgDesc = document.querySelector('#imgDesc');
+let imgName = document.querySelector('#imgName');
 
-let usergenerator = async () => {
-    const usedata = await fetch(`https://randomuser.me/api/`);
+let randomImg
+let usergenerator = async (endpoint) => {
+    const usedata = await fetch(`${base_url}${endpoint}`)
     let answershow = await usedata.json();
-    console.log(answershow)
-    answershow.results.forEach((elements) => {
-        img.src = `${elements.picture.large}`;
-        email.innerHTML = `${elements.email}`
-        let names = `${elements.name.first} ${elements.name.last}`;
-        span.innerHTML = names;
-
-    });
-
+    randomImg = Math.floor(Math.random() * 20)
+    imgPath = answershow.results[randomImg].poster_path;
+    img.src = `${img_base_url}${imgPath}`;
+    imgName.innerHTML = `${answershow.results[randomImg].original_title}`;
+    imgDesc.innerHTML = `${answershow.results[randomImg].
+        overview}`
+    console.log(answershow.results[randomImg])
 }
-usergenerator();
+usergenerator(requests.fetchTrending);
