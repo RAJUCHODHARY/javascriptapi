@@ -18,10 +18,11 @@
 .logo img{
     object-fit: cover;
     padding: 0 15px;
+    padding-top: 10px;
     width: 230px;
+    background-color: black;
     height: 40px;
 }
-
 
 .manu ul {
     display: flex;
